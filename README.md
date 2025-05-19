@@ -1,7 +1,6 @@
 ## Play recruitment project - SMS validation
 
 ### How to run
-
 - Building from source code:
     - run `docker compose up --build`
 - From image:
@@ -11,7 +10,6 @@
 The application will be then accessible under `localhost:8080`.
 
 ### HTTP endpoints
-
 - `POST /messages`
     - body:
       ```
@@ -33,9 +31,9 @@ The application will be then accessible under `localhost:8080`.
     - Returns all customers.
 
 ### Assumptions and notes
-
 - All URLs are assumed to start with a protocol (either `http://` or `https://`), optionally followed by `www`, followed
   by domain, port and path.
+- The project was created using Java 21, with Spring Boot as the main framework.
 - An internal H2 database is used for this project for testing purposes, but it can easily be replaced with PostgresSQL
   or other relational database.
 - Some initial entries for users are included in the `resources/data.sql` file, mainly for testing and showcasing
