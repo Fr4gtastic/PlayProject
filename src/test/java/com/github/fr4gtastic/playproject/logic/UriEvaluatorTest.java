@@ -2,7 +2,7 @@ package com.github.fr4gtastic.playproject.logic;
 
 import com.github.fr4gtastic.playproject.config.Config;
 import com.github.fr4gtastic.playproject.data.entity.Sms;
-import com.github.fr4gtastic.playproject.dto.ConfidenceLevel;
+import com.github.fr4gtastic.playproject.dto.ThreatLevel;
 import com.github.fr4gtastic.playproject.dto.EvaluationResponse;
 import com.github.fr4gtastic.playproject.dto.Score;
 import com.github.fr4gtastic.playproject.dto.ThreatType;
@@ -45,8 +45,8 @@ public class UriEvaluatorTest {
     void evaluateSafeUriTest() {
         when(messageParser.getUriFromMessage(anyString())).thenReturn("www.test.pl");
         when(config.getThreatTypes()).thenReturn(ThreatType.values());
-        when(config.getMaxSafeConfLevel()).thenReturn(ConfidenceLevel.MEDIUM);
-        when(evaluationService.evaluate(any())).thenReturn(new EvaluationResponse(List.of(new Score(ThreatType.MALWARE, ConfidenceLevel.SAFE))));
+        when(config.getMaxSafeConfLevel()).thenReturn(ThreatLevel.MEDIUM);
+        when(evaluationService.evaluate(any())).thenReturn(new EvaluationResponse(List.of(new Score(ThreatType.MALWARE, ThreatLevel.SAFE))));
         var sms = new Sms("634643634", "235253325", "www.test.pl");
         assertTrue(uriEvaluator.evaluate(sms));
     }
@@ -55,8 +55,8 @@ public class UriEvaluatorTest {
     void evaluateUnsafeUriTest() {
         when(messageParser.getUriFromMessage(anyString())).thenReturn("www.test.pl");
         when(config.getThreatTypes()).thenReturn(ThreatType.values());
-        when(config.getMaxSafeConfLevel()).thenReturn(ConfidenceLevel.MEDIUM);
-        when(evaluationService.evaluate(any())).thenReturn(new EvaluationResponse(List.of(new Score(ThreatType.MALWARE, ConfidenceLevel.VERY_HIGH))));
+        when(config.getMaxSafeConfLevel()).thenReturn(ThreatLevel.MEDIUM);
+        when(evaluationService.evaluate(any())).thenReturn(new EvaluationResponse(List.of(new Score(ThreatType.MALWARE, ThreatLevel.VERY_HIGH))));
         var sms = new Sms("634643634", "235253325", "www.test.pl");
         assertFalse(uriEvaluator.evaluate(sms));
     }

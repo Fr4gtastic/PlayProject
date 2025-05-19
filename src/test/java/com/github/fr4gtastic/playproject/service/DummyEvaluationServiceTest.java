@@ -1,6 +1,6 @@
 package com.github.fr4gtastic.playproject.service;
 
-import com.github.fr4gtastic.playproject.dto.ConfidenceLevel;
+import com.github.fr4gtastic.playproject.dto.ThreatLevel;
 import com.github.fr4gtastic.playproject.dto.EvaluationRequest;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -32,6 +32,6 @@ public class DummyEvaluationServiceTest {
         var request = new EvaluationRequest("www.test.pl", List.of(SOCIAL_ENGINEERING, MALWARE, UNWANTED_SOFTWARE));
         when(random.nextInt(anyInt())).thenReturn(0);
         var response = evaluationService.evaluate(request);
-        assertEquals(ConfidenceLevel.SAFE, response.scores().get(0).confidenceLevel());
+        assertEquals(ThreatLevel.SAFE, response.scores().get(0).threatLevel());
     }
 }

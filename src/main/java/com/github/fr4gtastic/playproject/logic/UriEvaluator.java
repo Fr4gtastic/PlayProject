@@ -41,7 +41,7 @@ public class UriEvaluator implements Evaluator {
 
     private boolean isResultAccepted(EvaluationResponse response) {
         for (var score : response.scores()) {
-            if (score.confidenceLevel().ordinal() > config.getMaxSafeConfLevel().ordinal()) {
+            if (score.threatLevel().ordinal() > config.getMaxSafeConfLevel().ordinal()) {
                 return false;
             }
         }

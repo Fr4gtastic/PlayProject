@@ -1,6 +1,6 @@
 package com.github.fr4gtastic.playproject.service;
 
-import com.github.fr4gtastic.playproject.dto.ConfidenceLevel;
+import com.github.fr4gtastic.playproject.dto.ThreatLevel;
 import com.github.fr4gtastic.playproject.dto.EvaluationRequest;
 import com.github.fr4gtastic.playproject.dto.EvaluationResponse;
 import com.github.fr4gtastic.playproject.dto.Score;
@@ -30,7 +30,7 @@ public class DummyEvaluationService implements EvaluationService {
         return new EvaluationResponse(scores);
     }
 
-    private ConfidenceLevel getDummyConfidenceLevel() {
-        return ConfidenceLevel.values()[random.nextInt(ConfidenceLevel.values().length)];
+    private ThreatLevel getDummyConfidenceLevel() {
+        return ThreatLevel.values()[random.nextInt(ThreatLevel.values().length)];
     }
 }
