@@ -15,7 +15,11 @@ import java.util.Random;
 @NoArgsConstructor
 public class DummyEvaluationService implements EvaluationService {
 
-    private final Random random = new Random();
+    private Random random = new Random();
+
+    public DummyEvaluationService(Random random) {
+        this.random = random;
+    }
 
     @Override
     public EvaluationResponse evaluate(EvaluationRequest evaluationRequest) {

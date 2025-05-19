@@ -19,7 +19,8 @@ public class OptInOutProcessor {
     private final Logger logger = LoggerFactory.getLogger(OptInOutProcessor.class);
 
     @Autowired
-    public OptInOutProcessor(MessageParser messageParser, CustomerRepository customerRepository) {
+    public OptInOutProcessor(MessageParser messageParser,
+                             CustomerRepository customerRepository) {
         this.messageParser = messageParser;
         this.customerRepository = customerRepository;
     }
@@ -32,7 +33,8 @@ public class OptInOutProcessor {
         }
     }
 
-    private void optIn(String customerNumber, boolean optedIn) {
+    private void optIn(String customerNumber,
+                       boolean optedIn) {
         var optionalCustomer = customerRepository.findByPhoneNumber(customerNumber);
         if (optionalCustomer.isPresent()) {
             logger.info("Customer with number {} opted {} SMS evaluation.", customerNumber, optedIn ? "in for" : "out of");

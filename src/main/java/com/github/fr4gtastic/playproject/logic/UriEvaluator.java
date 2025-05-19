@@ -20,7 +20,9 @@ public class UriEvaluator implements Evaluator {
     private final MessageParser messageParser;
 
     @Autowired
-    public UriEvaluator(Config config, EvaluationService evaluationService, MessageParser messageParser) {
+    public UriEvaluator(Config config,
+                        EvaluationService evaluationService,
+                        MessageParser messageParser) {
         this.config = config;
         this.evaluationService = evaluationService;
         this.messageParser = messageParser;

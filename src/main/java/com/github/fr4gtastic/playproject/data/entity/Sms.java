@@ -16,7 +16,9 @@ public class Sms {
     private String recipient;
     private String message;
 
-    public Sms(String sender, String recipient, String message) {
+    public Sms(String sender,
+               String recipient,
+               String message) {
         this.sender = sender;
         this.recipient = recipient;
         this.message = message;
