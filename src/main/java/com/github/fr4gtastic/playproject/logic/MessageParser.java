@@ -4,8 +4,6 @@ import com.github.fr4gtastic.playproject.dto.EvaluationOption;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -17,6 +15,12 @@ public class MessageParser {
             Arrays.stream(EvaluationOption.values())
                     .map(EvaluationOption::toString)
                     .collect(Collectors.joining("|"));
+    // This pattern covers most normal cases, including optional protocol and "www"
+    private static final String SIMPLE_URL_PATTERN =
+            "^(https?://)?"
+            + "(www\\.)?"
+            + "[a-zA-Z0-9][a-zA-Z0-9\\-]+(\\.[a-zA-Z]{2,})+"
+            + "(:\\d+)?(/\\S*)?$";
 
     public boolean isEvaluationOption(String message) {
         return message.matches(EVALUATION_OPTIONS_PATTERN);
@@ -27,13 +31,9 @@ public class MessageParser {
     }
 
     public String getUriFromMessage(String message) {
-        var words = message.split(" ");
-
-        for (var word : words) {
-            try {
-                var url = new URI(word);
-                return url.toString();
-            } catch (URISyntaxException ignored) {
+        for (var word : message.split(" ")) {
+            if (word.matches(SIMPLE_URL_PATTERN)) {
+                return word;
             }
         }
         return "";
